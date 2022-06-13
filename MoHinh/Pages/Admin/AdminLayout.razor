@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+<div class="bg-info text-white p-2">
+    <span class="navbar-brand ml-2">Swan Shop Administration</span>
+</div>
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col-3">
+            <NavLink class="btn btn-outline-primary btn-block"
+                     href="/admin/hinhs"
+                     ActiveClass="btn-primary text-white"
+                     Match="NavLinkMatch.Prefix">
+                Mô Hình
+            </NavLink>
+            <NavLink class="btn btn-outline-primary btn-block"
+                     href="/admin/orders"
+                     ActiveClass="btn-primary text-white"
+                     Match="NavLinkMatch.Prefix">
+                Đặt hàng
+            </NavLink>
+        </div>
+        <div class="col">
+            @Body
+        </div>
+    </div>
+</div>
+

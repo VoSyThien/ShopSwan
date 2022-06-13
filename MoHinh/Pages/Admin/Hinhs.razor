@@ -1,0 +1,70 @@
+﻿@page "/admin/hinhs"
+@page "/admin"
+@inherits OwningComponentBase<IMoHinhRepository>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên mô hình</th>
+            <th>Thế loại</th>
+            <th>Giá</th>
+            <td />
+        </tr>
+    </thead>
+    <tbody>
+        @if (HinhData?.Count() > 0)
+        {
+            @foreach (Hinh b in HinhData)
+            {
+                <tr>
+                    <td>@b.HinhID</td>
+                    <td>@b.TenMoHinh</td>
+                    <td>@b.TheLoai</td>
+                    <td>@b.Gia.ToString("c")</td>
+                    <td>
+                        <NavLink class="btn btn-info btn-sm"
+                                 href="@GetDetailsUrl(b.HinhID)">
+                            Chi tiết
+                        </NavLink>
+                        <NavLink class="btn btn-warning btn-sm"
+                                 href="@GetEditUrl(b.HinhID)">
+                            Chỉnh sửa
+                        </NavLink>
+                        <button class="btn btn-danger btn-sm"
+                                @onclick="@(e => DeleteHinh(b))">
+                            Xóa
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">Không có mô hình nào</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<NavLink class="btn btn-primary" href="/admin/hinhs/create">Chỉnh sửa</NavLink>
+@code {
+    public IMoHinhRepository Repository => Service;
+    public IEnumerable<Hinh> HinhData { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        HinhData = await Repository.Hinhs.ToListAsync();
+    }
+    public async Task DeleteHinh(Hinh b)
+    {
+        Repository.DeleteHinh(b);
+        await UpdateData();
+    }
+
+    public string GetDetailsUrl(long id) => $"/admin/hinhs/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/hinhs/edit/{id}";
+}
+

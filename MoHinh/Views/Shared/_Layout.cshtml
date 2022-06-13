@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SwanShop</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/color1.css"/>
+</head>
+<body>
+    <div>
+        <div class="bg-dark text-white p-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="menu1" class="col navbar-brand">Shop mô hình SWAN <i class="fa-solid fa-cubes"></i></div>
+                    <div class="col-6 text-right">
+                        <vc:cart-summary />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-1 p-1">
+            <div id="genres" class="col-3">
+                <p class="tieude">
+                    <i>
+                        ✎﹏Chào mừng bạn đến với của hàng Mô Hình SWAN.</br>
+                        ✎﹏Bạn có thể tìm mô hình yêu thích của mình tại đây với giá tốt nhất trên thị trường.
+                    </i>
+                </p>
+                <vc:genre-navigation />
+            </div>
+            <div class="col-9">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
